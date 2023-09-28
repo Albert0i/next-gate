@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { connectMySQL, closeMySQL, queryMySQL, executeMySQL } from "@/config/mysql";
+import { connectMySQL, closeMySQL, queryMySQL, insertMySQL, deleteMySQL } from "@/config/mysql";
 
 // Get rows
 export async function GET(req) {
@@ -9,11 +9,7 @@ export async function GET(req) {
   closeMySQL()
   
   return NextResponse.json(
-    { 
-      success: true, 
-      result
-    }, 
-    { status: 200 })
+    result, { status: 200 })
 }
 
 // Insert rows
@@ -21,13 +17,20 @@ export async function POST(req) {
   const searchParams = req.nextUrl.searchParams  
   const reqBody = await req.json() 
   await connectMySQL()
-  const result = await executeMySQL(searchParams.get('table'), reqBody)
+  const result = await insertMySQL(searchParams.get('table'), reqBody)
   closeMySQL()
 
   return NextResponse.json(
-    { 
-      success: true, 
-      result
-    }, 
-    { status: 201 })
+    result, { status: 201 })
+}
+
+// Delete rows 
+export async function DELETE(req) {
+  const searchParams = req.nextUrl.searchParams    
+  await connectMySQL()
+  const result = await deleteMySQL(searchParams.get('table'))
+  closeMySQL()
+
+  return NextResponse.json(
+    result, { status: 200 })
 }

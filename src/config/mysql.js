@@ -13,24 +13,41 @@ export const connectMySQL = async () => {
   }
 };
 
-export const queryMySQL = async (tabName) => {
+export const queryMySQL = async (tabName, ommitKey='_id') => {
   const tempArray = process.env.MYSQL_URI.split('/')
   const dbName = tempArray[tempArray.length-1]
   const sql = `SELECT GROUP_CONCAT(c.column_name) as fields
   FROM information_schema.columns c 
   WHERE c.table_schema='${dbName}' and c.table_name='${tabName}' and 
-        c.column_name not in ('id')`
+        c.column_name not in ('${ommitKey}')`
 
-  const [result, ] = await connection.query(sql);
-  const [rows, ] = await connection.query(`SELECT ${result[0].fields} FROM ${tabName}`);
-  return rows
+  try {
+    const [result, ] = await connection.query(sql);
+    const [rows, ] = await connection.query(`SELECT ${result[0].fields} FROM ${tabName}`);
+    return { success: true, rows }
+  } catch (error) { 
+    return { success: false, error }
+  }
 }
 
-export const executeMySQL = async (tabName, rows) => {
+export const insertMySQL = async (tabName, rows) => {
   const [sql, arrayValue] = convertToInsertSQL(tabName, rows)
   
-  const result = await connection.query(sql, [arrayValue], true)
-  return result
+  try {
+    const result = await connection.query(sql, [arrayValue], true)
+    return { success: true, result }
+  } catch (error) {
+    return { success: false, error }
+  } 
+}
+
+export const deleteMySQL = async (tabName) => {  
+  try {
+    const result = await connection.execute(`TRUNCATE TABLE ${tabName}`)
+    return { success: true, result }
+  } catch (error) {
+    return { success: false, error }
+  } 
 }
 
 export const closeMySQL = () => {

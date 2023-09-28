@@ -14,19 +14,39 @@ export const connectMongoDB = async () => {
 };
 
 export const queryMongoDB = async (colName) => {
-  const db = client.db();
-  const collection = db.collection(colName);
-
-  const result = await collection.find({}, {projection: {_id: 0, __v: 0}} ).toArray()
-  return result
+  try {
+    const db = client.db();
+    const collection = db.collection(colName);
+  
+    const docs = await collection.find({}, {projection: {id: 0, __v: 0}} ).toArray()
+    return { success: true, docs }
+  } catch (error) {
+    return { success: false, error }
+  } 
 }
 
-export const executeMongoDB = async (colName, documents) => {
-  const db = client.db();
-  const collection = db.collection(colName);
-  
-  const result = await collection.insertMany(documents)
-  return result
+export const insertMongoDB = async (colName, documents) => {
+  try {
+    const db = client.db();
+    const collection = db.collection(colName);
+    
+    const result = await collection.insertMany(documents)
+    return { success: true, result }
+  } catch (error) {
+    return { success: false, error }
+  }
+}
+
+export const deleteMongoDB = async (colName) => {
+  try {
+    const db = client.db();
+    const collection = db.collection(colName);
+    
+    const result = await collection.deleteMany({})
+    return { success: true, result }
+  } catch (error) {
+    return { success: false, error }
+  }
 }
 
 export const closeMongoDB = () => {

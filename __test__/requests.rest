@@ -1,7 +1,5 @@
 ### Test GET (mongodb)
 GET http://localhost:3000/api/mongodb?collection=users
-Content-Type: application/json
-
 
 ### Test POST (mongodb)
 POST http://localhost:3000/api/mongodb?collection=users
@@ -12,11 +10,13 @@ Content-Type: application/json
   { "name": "Mr. Rong", "age": 27 }
 ]
 
+### Test DELETE (mongodb) 
+DELETE http://localhost:3000/api/mongodb?collection=users
+
+
 
 ### Test GET (mysql)
 GET http://localhost:3000/api/mysql?table=users
-Content-Type: application/json
-
 
 ### Test POST (mysql)
 POST http://localhost:3000/api/mysql?table=users
@@ -26,6 +26,9 @@ Content-Type: application/json
   { "name": "Alberto", "age": 57 }, 
   { "name": "Mr. Rong", "age": 27 }
 ]
+
+### Test DELETE (mysql)
+DELETE http://localhost:3000/api/mysql?table=users
 
 # 
 # REST Client for Visual Studio Code

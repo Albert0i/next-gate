@@ -3,6 +3,7 @@ DROP TABLE users;
 
 CREATE TABLE users (
     id      int NOT NULL AUTO_INCREMENT,
+    _id     char(24) DEFAULT '', 
     name    varchar(255) NOT NULL,    
     age     int,
     PRIMARY KEY (id)
