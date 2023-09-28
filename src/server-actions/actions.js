@@ -12,13 +12,9 @@ export const M2M = async (direction, table, collection) => {
         toURI = `${process.env.API_URL}/mysql?table=${table}`
     }
     
-    console.log('fromURI=', fromURI)
-    console.log('toURI=', toURI)
     const resFrom = await fetch(fromURI, { cache: 'no-store' })
     if (resFrom.ok) {
-        console.log('from ok')
         const dataFrom = await resFrom.json()
-        console.log('dataFrom=', dataFrom)
         const resTo = await fetch(toURI,
                             { 
                                 method: 'POST',
@@ -26,20 +22,16 @@ export const M2M = async (direction, table, collection) => {
                                 body: JSON.stringify(direction==='MySQL'?dataFrom.rows:dataFrom.docs) 
                             })
         if (resTo.ok) {
-            console.log('to ok')
             const dataTo = await resTo.json()
-            console.log('dataTo=', dataTo)
             return dataTo 
         }
         else 
         {
-            //throw new Error('Server returned ' + res.status);
             return resTo
         }
     }
     else 
     {
-        //throw new Error('Server returned ' + res.status);
         return resFrom
     }
 }
