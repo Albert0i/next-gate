@@ -1,20 +1,23 @@
 "use client"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { MongoDB2MySQL } from '@/server-actions/actions'
+import { M2M } from '@/server-actions/actions'
 import { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 
 const Main = () => {
-    const [direction, setDirection] = useState('goRight')
+    const [direction, setDirection] = useState('MySQL')
+    const [table, setTable] = useState('users')
+    const [collection, setCollection] = useState('users')
+
     const handleArrowClick = () => {
-      if (direction==='goRight') 
-        setDirection('goLeft')
+      if (direction==='MySQL') 
+        setDirection('MongoDB')
       else
-        setDirection('goRight')
+        setDirection('MySQL')
     }
     const handleClick = () => {
-        MongoDB2MySQL('users', 'users')
-        .then(data => toast.success('success'))
+      M2M(direction, table, collection)
+        .then(result => console.log(result))
         .catch(err => console.log(err))
       }
     return (        
@@ -27,12 +30,14 @@ const Main = () => {
           </div>
 
           <div className='flex flex-row items-center justify-between gap-4 mt-4'>
-            <input type='text' placeholder='table' className='w-24 p-2' autoFocus></input>
-              { direction === 'goLeft' && 
+            <input type='text' placeholder='table' className='w-24 p-2' autoFocus 
+              onChange={ e => setTable(e.target.value) } defaultValue={table} />
+              { direction === 'MongoDB' && 
                 <FaArrowLeft className='w-12 text-2xl hover:text-gray-500' onClick={handleArrowClick} /> }
-              { direction === 'goRight' && 
+              { direction === 'MySQL' && 
                 <FaArrowRight className='w-12 text-2xl hover:text-gray-500' onClick={handleArrowClick} /> }
-            <input type='text' placeholder='collection' className='w-24 p-2'></input>
+            <input type='text' placeholder='collection' className='w-24 p-2' 
+              onChange={ e => setCollection(e.target.value) } defaultValue={collection} />
           </div>
           
           <div>
