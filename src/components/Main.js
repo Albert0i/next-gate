@@ -18,7 +18,7 @@ const Main = () => {
         .catch(err => console.log(err))
       }
     return (        
-        <div className='flex flex-col items-center justify-center h-1/2'>
+        <div className='flex flex-col items-center justify-center h-2/3'>
           
           <div className='flex flex-row items-center gap-4 mt-4 justify-self-stretch'>
               <span className='w-24 font-bold text-right'>MySQL</span>
@@ -36,7 +36,7 @@ const Main = () => {
           </div>
           
           <div>
-            <button className='w-auto px-8 py-2 mt-4 font-bold text-white uppercase bg-blue-500 rounded-lg shadow-lg hover:bg-blue-400' onClick={handleClick}>go</button>
+            <button className='w-auto px-8 py-2 mt-8 font-bold text-white uppercase bg-blue-500 rounded-lg shadow-lg hover:bg-blue-400' onClick={handleClick}>go</button>
           </div>
 
           <div>
