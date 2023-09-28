@@ -1,0 +1,8 @@
+
+MONGODB_URI=mongodb://root:root@127.0.0.1:27017/testdb?authSource=admin
+
+MYSQL_URI=mysql://root:root@localhost:3306/testdb
+
+API_URL=http://localhost:3000/api
+
+APP_ENV=localhost

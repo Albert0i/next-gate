@@ -1,0 +1,33 @@
+### Test GET (mongodb)
+GET http://localhost:3000/api/mongodb?collection=users
+Content-Type: application/json
+
+
+### Test POST (mongodb)
+POST http://localhost:3000/api/mongodb?collection=users
+Content-Type: application/json
+
+[
+  { "name": "Alberto", "age": 57 }, 
+  { "name": "Mr. Rong", "age": 27 }
+]
+
+
+### Test GET (mysql)
+GET http://localhost:3000/api/mysql?table=users
+Content-Type: application/json
+
+
+### Test POST (mysql)
+POST http://localhost:3000/api/mysql?table=users
+Content-Type: application/json
+
+[
+  { "name": "Alberto", "age": 57 }, 
+  { "name": "Mr. Rong", "age": 27 }
+]
+
+# 
+# REST Client for Visual Studio Code
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+#
