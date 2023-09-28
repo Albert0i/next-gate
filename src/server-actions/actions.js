@@ -11,7 +11,7 @@ export const M2M = async (direction, table, collection) => {
         fromURI = `${process.env.API_URL}/mongodb?collection=${collection}`
         toURI = `${process.env.API_URL}/mysql?table=${table}`
     }
-    
+       
     const resFrom = await fetch(fromURI, { cache: 'no-store' })
     if (resFrom.ok) {
         const dataFrom = await resFrom.json()
@@ -36,27 +36,24 @@ export const M2M = async (direction, table, collection) => {
     }
 }
 
+export const Mdelete = async (direction, table, collection) => {
+    let apiURI = ''
 
-// export const MongoDB2MySQL = async (srcCol, dstTable) => {
-//     const res1 = await fetch(`${process.env.API_URL}/mongodb?collection=${srcCol}`,
-//                             { cache: 'no-store' })
-//     if (res1.ok) {
-//         const data1 = await res1.json()
-//         const res2 = await fetch(`${process.env.API_URL}/mysql?table=${dstTable}`,
-//                             { 
-//                                 method: 'POST',
-//                                 headers: { "Content-type": "application/json", },
-//                                 body: JSON.stringify(data1.result) 
-//                             })
-//         if (res2.ok) {
-//             const data2 = await res2.json()
-//             return data2 
-//         }
-//         else 
-//         {
-//             //throw new Error('Server returned ' + res1.status);
-//             return { success: false, message: res1.status} 
-//         }
-//     }  
-//     return false
-// }
+    if (direction==='MySQL') {
+        apiURI = `${process.env.API_URL}/mongodb?collection=${collection}`        
+    } else {
+        apiURI = `${process.env.API_URL}/mysql?table=${table}`        
+    }
+    console.log('apiURI=', apiURI)
+    const res = await fetch(apiURI, { method: 'DELETE' })
+    if (res.ok) {
+        console.log('delete ok')
+        const data = await res.json()
+        return data
+    }
+    else {
+        console.log('delete fail')
+        console.log(res)
+        return res
+    }    
+}

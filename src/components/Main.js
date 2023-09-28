@@ -1,6 +1,6 @@
 "use client"
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { M2M } from '@/server-actions/actions'
+import { M2M, Mdelete } from '@/server-actions/actions'
 import { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -16,7 +16,7 @@ const Main = () => {
         setDirection('MySQL')
     }
     const handleClick = () => {
-      M2M(direction, table, collection)
+      Mdelete(direction, table, collection)
         .then(result => console.log(result))
         .catch(err => console.log(err))
       }
