@@ -27,11 +27,13 @@ export const M2M = async (direction, table, collection) => {
         }
         else 
         {
+            console.log(resTo)
             return resTo
         }
     }
     else 
     {
+        console.log(resForm)
         return resFrom
     }
 }
@@ -42,17 +44,15 @@ export const Mdelete = async (direction, table, collection) => {
     if (direction==='MySQL') {
         apiURI = `${process.env.API_URL}/mongodb?collection=${collection}`        
     } else {
-        apiURI = `${process.env.API_URL}/mysql?table=${table}`        
+        apiURI = `${process.env.API_URL}/mysql?table=${table}`
     }
-    console.log('apiURI=', apiURI)
-    const res = await fetch(apiURI, { method: 'DELETE' })
-    if (res.ok) {
-        console.log('delete ok')
-        const data = await res.json()
+    
+    const res = await fetch(apiURI, { cache: 'no-store', method: 'DELETE' })
+    if (res.ok) {                
+        const data = await res.json()        
         return data
     }
     else {
-        console.log('delete fail')
         console.log(res)
         return res
     }    
