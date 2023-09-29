@@ -32,10 +32,24 @@ const Main = () => {
       try {
         if (erase) {
           const resultErase = await Mdelete(direction, table, collection)
-          console.log('resultErase=', resultErase)
+          //console.log('resultErase=', resultErase)
+          if (! resultErase.success) {
+            console.log(resultErase)
+            toast.error('Failed')
+            return 
+          }  
         }
+
         const resultCopy = await M2M(direction, table, collection)
-        console.log('resultCopy=', resultCopy)
+        //console.log('resultCopy=', resultCopy)        
+        if (resultCopy.success) {
+          const count = resultCopy.result.insertedCount || resultCopy.result[0]?.affectedRows          
+          toast.success(`Success (${count})`)
+        }          
+        else {
+          console.log(resultCopy)
+          toast.error('Failed')
+        }          
       } catch(error) {
         console.log(error)
       }
