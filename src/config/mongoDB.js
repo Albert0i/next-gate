@@ -13,12 +13,12 @@ export const connectMongoDB = async () => {
   }
 };
 
-export const queryMongoDB = async (colName) => {
+export const queryMongoDB = async (colName, ommitKey='id') => {
   try {
     const db = client.db();
     const collection = db.collection(colName);
   
-    const docs = await collection.find({}, {projection: {id: 0, __v: 0}} ).toArray()
+    const docs = await collection.find({}, {projection: {[ommitKey]: 0, __v: 0}} ).toArray()
     return { success: true, docs }
   } catch (error) {
     return { success: false, error }
@@ -37,7 +37,7 @@ export const insertMongoDB = async (colName, documents) => {
   }
 }
 
-export const deleteMongoDB = async (colName) => {
+export const deleteMongoDB = async (colName) => {  
   try {
     const db = client.db();
     const collection = db.collection(colName);

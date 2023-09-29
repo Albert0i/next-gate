@@ -8,6 +8,8 @@ const Main = () => {
     const [direction, setDirection] = useState('MySQL')
     const [erase, setErase] = useState(true)
     const [table, setTable] = useState('users')
+    const [id, setId] = useState('id')
+    const [_id, set_Id] = useState('_id')
     const [collection, setCollection] = useState('users')
     const [disable, setDisable] = useState(false)
 
@@ -25,24 +27,25 @@ const Main = () => {
         setDirection('MySQL')
     }   
     
-    const handleGoClick = async () => {      
+    const handleGoClick = async () => {
       setDisable(true)
       try {
-        if (erase) {
+        if (erase) {          
           const resultErase = await Mdelete(direction, table, collection)
           //console.log('resultErase=', resultErase)
           if (! resultErase.success) {
             console.log(resultErase)
-            toast.error('Failed')            
+            toast.error('Failed')
             return 
           }  
         }
 
-        const resultCopy = await M2M(direction, table, collection)
+        const omitKey = direction==='MySQL' ? _id : id 
+        const resultCopy = await M2M(direction, table, collection, omitKey)
         //console.log('resultCopy=', resultCopy)        
         if (resultCopy.success) {
           const count = resultCopy.result.insertedCount || resultCopy.result[0]?.affectedRows          
-          toast.success(`Success (${count})`)
+          toast.success(`Success (${erase?'':'+'}${count})`)
         }          
         else {
           console.log(resultCopy)
@@ -73,12 +76,20 @@ const Main = () => {
                 <FaArrowRight className='w-12 text-2xl hover:text-gray-500' onClick={handleArrowClick} /> }
             <input type='text' placeholder='collection' className='w-24 p-2' 
               onChange={ e => setCollection(e.target.value) } defaultValue={collection} />
-          </div>
-          
+          </div>         
+
           <div className='flex gap-2 mt-4'>
             <input id='erase' type='checkbox' 
             checked={erase ? 'checked':''} onChange={ () => setErase(! erase) }></input>
             <label htmlFor='erase' className='text-sm capitalize'>erase target</label>
+          </div>
+
+          <div className='flex flex-row items-center justify-between gap-4 mt-4'>
+            <input type='text' placeholder='omitKey' className='w-24 p-2' 
+              onChange={ e => set_Id(e.target.value) } defaultValue={_id}/>
+            <div className='w-12' />
+            <input type='text' placeholder='omitKey' className='w-24 p-2' 
+              onChange={ e => setId(e.target.value) } defaultValue={id} />
           </div>
 
           <div>

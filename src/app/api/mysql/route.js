@@ -5,7 +5,7 @@ import { connectMySQL, closeMySQL, queryMySQL, insertMySQL, deleteMySQL } from "
 export async function GET(req) {
   const searchParams = req.nextUrl.searchParams  
   await connectMySQL()
-  const result = await queryMySQL(searchParams.get('table'))
+  const result = await queryMySQL(searchParams.get('table'), searchParams.get('omitkey'))
   closeMySQL()
   
   return NextResponse.json(

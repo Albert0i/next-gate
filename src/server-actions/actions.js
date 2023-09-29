@@ -1,14 +1,14 @@
 "use server"
 
-export const M2M = async (direction, table, collection) => {
+export const M2M = async (direction, table, collection, ommitKey) => {
     let fromURI = ''
     let toURI = ''
 
     if (direction==='MySQL') {
-        fromURI = `${process.env.API_URL}/mysql?table=${table}`
+        fromURI = `${process.env.API_URL}/mysql?table=${table}&omitkey=${ommitKey}`
         toURI = `${process.env.API_URL}/mongodb?collection=${collection}`
     } else {
-        fromURI = `${process.env.API_URL}/mongodb?collection=${collection}`
+        fromURI = `${process.env.API_URL}/mongodb?collection=${collection}&omitkey=${ommitKey}`
         toURI = `${process.env.API_URL}/mysql?table=${table}`
     }
        

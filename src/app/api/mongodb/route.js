@@ -5,7 +5,7 @@ import { connectMongoDB, closeMongoDB, queryMongoDB, insertMongoDB, deleteMongoD
 export async function GET(req) {
   const searchParams = req.nextUrl.searchParams 
   await connectMongoDB()
-  const result = await queryMongoDB(searchParams.get('collection'))
+  const result = await queryMongoDB(searchParams.get('collection'), searchParams.get('omitkey'))
   closeMongoDB()
 
   return NextResponse.json(
