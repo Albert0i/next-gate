@@ -26,16 +26,14 @@ const Main = () => {
     }   
     
     const handleGoClick = async () => {      
-      // M2M(direction, table, collection)
-      //   .then(result => console.log(result))
-      //   .catch(err => console.log(err))
+      setDisable(true)
       try {
         if (erase) {
           const resultErase = await Mdelete(direction, table, collection)
           //console.log('resultErase=', resultErase)
           if (! resultErase.success) {
             console.log(resultErase)
-            toast.error('Failed')
+            toast.error('Failed')            
             return 
           }  
         }
@@ -52,6 +50,8 @@ const Main = () => {
         }          
       } catch(error) {
         console.log(error)
+      } finally {
+        setDisable(false)
       }
     }
     
