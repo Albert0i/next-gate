@@ -14,15 +14,19 @@ export const connectMySQL = async () => {
 };
 
 export const queryMySQL = async (tabName, ommitKey='_id') => {
+  // dbName is supposed to be the last part of MYSQL_URI
   const tempArray = process.env.MYSQL_URI.split('/')
-  const dbName = tempArray[tempArray.length-1]
+  let dbName = tempArray[tempArray.length-1]  
+  // but before the question mark (if any). 
+  dbName = (dbName.split('?'))[0]
+  //console.log('dbName=', dbName)
   const sql = `SELECT GROUP_CONCAT(c.column_name) as fields
   FROM information_schema.columns c 
   WHERE c.table_schema='${dbName}' and c.table_name='${tabName}' and 
         c.column_name not in ('${ommitKey}')`
 
   try {
-    const [result, ] = await connection.query(sql);
+    const [result, ] = await connection.query(sql);    
     const [rows, ] = await connection.query(`SELECT ${result[0].fields} FROM ${tabName}`);
     return { success: true, rows }
   } catch (error) { 
