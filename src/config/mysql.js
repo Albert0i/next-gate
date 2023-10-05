@@ -19,7 +19,7 @@ export const queryMySQL = async (tabName, ommitKey='_id') => {
   let dbName = tempArray[tempArray.length-1]  
   // but before the question mark (if any). 
   dbName = (dbName.split('?'))[0]
-  //console.log('dbName=', dbName)
+  console.log('dbName=', dbName)
   const sql = `SELECT GROUP_CONCAT(c.column_name) as fields
   FROM information_schema.columns c 
   WHERE c.table_schema='${dbName}' and c.table_name='${tabName}' and 
@@ -27,6 +27,7 @@ export const queryMySQL = async (tabName, ommitKey='_id') => {
 
   try {
     const [result, ] = await connection.query(sql);    
+    console.log('result=', result)
     const [rows, ] = await connection.query(`SELECT ${result[0].fields} FROM ${tabName}`);
     return { success: true, rows }
   } catch (error) { 
