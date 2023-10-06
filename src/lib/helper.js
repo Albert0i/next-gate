@@ -33,8 +33,19 @@ export const URLSearchParams2Json = (params) =>
         })
         sql = `INSERT INTO ${table} (${fields}) VALUES ?;`
         
+        let newRow = []
         rows.map(row => {
-          arrayValue.push(Object.values(row))
+          console.log('row=', row)
+          //arrayValue.push(Object.values(row))
+          newRow = Object.values(row).map( value => {            
+            if (isIsoDate(value)) {
+                return `STR_TO_DATE('${value}','%Y-%m-%dT%H:%i:%s.%fZ')`
+            }            
+            else {
+                return value
+            }
+          })
+          arrayValue.push(newRow)
         })
         console.log('sql=', sql)
         console.log('arrayValue=', arrayValue)
@@ -43,17 +54,27 @@ export const URLSearchParams2Json = (params) =>
   }
 
 /*
+   Check if a date string is in ISO and UTC format
+   https://stackoverflow.com/questions/52869695/check-if-a-date-string-is-in-iso-and-utc-format
+*/
+function isIsoDate(str) {
+  if (!/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(str)) return false;
+  const d = new Date(str); 
+  return d instanceof Date && !isNaN(d.getTime()) && d.toISOString()===str; // valid date 
+}
+
+/*
    How to validate timestamp in javascript
    https://stackoverflow.com/questions/12422918/how-to-validate-timestamp-in-javascript
 */
-export function isValidTimestamp(_timestamp) {
-    const newTimestamp = new Date(_timestamp).getTime();
-    return isNumeric(newTimestamp);
-}
+// export function isValidTimestamp(_timestamp) {
+//     const newTimestamp = new Date(_timestamp).getTime();
+//     return isNumeric(newTimestamp);
+// }
 
-export function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
+// export function isNumeric(n) {
+//     return !isNaN(parseFloat(n)) && isFinite(n);
+// }
 
 /*
    convert string to datetime in my sql [duplicate]
