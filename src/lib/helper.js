@@ -39,7 +39,8 @@ export const URLSearchParams2Json = (params) =>
           //arrayValue.push(Object.values(row))
           newRow = Object.values(row).map( value => {            
             if (isIsoDate(value)) {
-                return `STR_TO_DATE('${value}','%Y-%m-%dT%H:%i:%s.%fZ')`
+                //return `STR_TO_DATE('${value}','%Y-%m-%dT%H:%i:%s.%fZ')`
+                return value.replace('Z','')
             }
             else {
                 return value
