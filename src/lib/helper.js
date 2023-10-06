@@ -40,7 +40,7 @@ export const URLSearchParams2Json = (params) =>
           newRow = Object.values(row).map( value => {            
             if (isIsoDate(value)) {
                 return `STR_TO_DATE('${value}','%Y-%m-%dT%H:%i:%s.%fZ')`
-            }            
+            }
             else {
                 return value
             }
@@ -89,3 +89,24 @@ function isIsoDate(str) {
 // {
 //   arrayValue.push(Object.values(row))
 // }
+
+/*
+code
+: 
+"ER_TRUNCATED_WRONG_VALUE"
+errno
+: 
+1292
+message
+: 
+"Incorrect datetime value: 'STR_TO_DATE('2023-10-06T08:26:35.000Z','%Y-%m-%dT%H:%i:%s.%f')' for column 'createdAt' at row 1"
+sql
+: 
+"INSERT INTO users (_id, age, createdAt, isAdmin, name, updatedAt) VALUES ('651fc823d4fedbe135a9337e', 26, 'STR_TO_DATE(\\'2023-10-06T08:26:35.000Z\\',\\'%Y-%m-%dT%H:%i:%s.%f\\')', 0, 'Kyle', NULL), ('651fc823d4fedbe135a9337f', 27, 'STR_TO_DATE(\\'2023-10-06T08:26:35.000Z\\',\\'%Y-%m-%dT%H:%i:%s.%f\\')', 0, 'Sally', NULL), ('651fc823d4fedbe135a93380', 33, 'STR_TO_DATE(\\'2022-10-05T23:16:37.000Z\\',\\'%Y-%m-%dT%H:%i:%s.%f\\')', 1, 'Dave', NULL);"
+sqlMessage
+: 
+"Incorrect datetime value: 'STR_TO_DATE('2023-10-06T08:26:35.000Z','%Y-%m-%dT%H:%i:%s.%f')' for column 'createdAt' at row 1"
+sqlState
+: 
+"22007"
+*/

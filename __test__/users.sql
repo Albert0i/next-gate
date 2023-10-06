@@ -15,7 +15,7 @@ CREATE TABLE users (
 INSERT INTO users (name, age) values('Kyle', 26);
 INSERT INTO users (name, age) values('Sally', 27);
 INSERT INTO users (name, age, isAdmin, createdAt) 
-    values('Dave', 33, true, STR_TO_DATE('2022-10-06T07:16:37.000Z','%Y-%m-%dT%H:%i:%s.%fZ'));
+    values('Dave', 33, true, STR_TO_DATE('2023-10-06T08:26:35.000Z','%Y-%m-%dT%H:%i:%s.%fZ'));
 
 -- 
 -- SQL AUTO INCREMENT Field
