@@ -34,8 +34,37 @@ export const URLSearchParams2Json = (params) =>
         sql = `INSERT INTO ${table} (${fields}) VALUES ?;`
         
         rows.map(row => {
-            arrayValue.push(Object.values(row))
-        }) 
+          arrayValue.push(Object.values(row))
+        })
+        console.log('sql=', sql)
+        console.log('arrayValue=', arrayValue)
         return [sql, arrayValue] 
     }
   }
+
+/*
+   How to validate timestamp in javascript
+   https://stackoverflow.com/questions/12422918/how-to-validate-timestamp-in-javascript
+*/
+export function isValidTimestamp(_timestamp) {
+    const newTimestamp = new Date(_timestamp).getTime();
+    return isNumeric(newTimestamp);
+}
+
+export function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/*
+   convert string to datetime in my sql [duplicate]
+   https://stackoverflow.com/questions/44802061/convert-string-to-datetime-in-my-sql
+*/
+
+// if (isValidTimestamp(Object.values(row)))
+// {
+//   arrayValue.push(`STR_TO_DATE('${Object.values(row)}','%Y-%m-%dT%H:%i:%s.%fZ')`)
+// }              
+// else 
+// {
+//   arrayValue.push(Object.values(row))
+// }

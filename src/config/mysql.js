@@ -13,6 +13,11 @@ export const connectMySQL = async () => {
   }
 };
 
+/*
+    select * from information_schema.columns 
+    where table_schema='testdb' and table_name='users'
+    order by ordinal_position;
+*/
 export const queryMySQL = async (tabName, ommitKey='_id') => {
   // dbName is supposed to be the last part of MYSQL_URI
   const tempArray = process.env.MYSQL_URI.split('/')
@@ -23,7 +28,7 @@ export const queryMySQL = async (tabName, ommitKey='_id') => {
   const sql = `SELECT GROUP_CONCAT(c.column_name) as fields
   FROM information_schema.columns c 
   WHERE c.table_schema='${dbName}' and c.table_name='${tabName}' and 
-        c.column_name not in ('${ommitKey}')`
+        c.column_name not in ('${ommitKey}') ORDER BY ordinal_position;`
 
   try {
     const [result, ] = await connection.query(sql);    
