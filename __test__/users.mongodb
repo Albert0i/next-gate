@@ -37,6 +37,12 @@ db.createCollection('users', {
     }
 });
 
+db.users.insertOne({ name: 'Kyle', age: 26 }); 
+db.users.insertOne({ name: 'Sally', age: 27 }); 
+db.users.insertOne({ name: 'Dave', age: 33, isAdmin: 1, createAt: '2023-10-06T08:26:35.000Z' }); 
+
+db.users.insertOne({ dodo: 'bird'} )
+
 /*
    How MongoDB Create Collection?
    https://www.knowledgehut.com/blog/web-development/mongodb-create-collection
