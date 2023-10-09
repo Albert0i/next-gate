@@ -5,7 +5,7 @@ CREATE TABLE users (
     id      INT NOT NULL AUTO_INCREMENT,
     _id     CHAR(24) DEFAULT '', 
     name    VARCHAR(255) NOT NULL,
-    age     INT,
+    age     INT CHECK (age > 0),
     isAdmin BOOLEAN DEFAULT false, 
     updatedAt TIMESTAMP, 
     createdAt TIMESTAMP DEFAULT now(),

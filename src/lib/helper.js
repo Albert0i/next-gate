@@ -35,7 +35,7 @@ export const URLSearchParams2Json = (params) =>
         
         let newRow = []
         rows.map(row => {
-          console.log('row=', row)
+          //console.log('row=', row)
           //arrayValue.push(Object.values(row))
           newRow = Object.values(row).map( value => {            
             if (isIsoDate(value)) {
@@ -48,8 +48,8 @@ export const URLSearchParams2Json = (params) =>
           })
           arrayValue.push(newRow)
         })
-        console.log('sql=', sql)
-        console.log('arrayValue=', arrayValue)
+        // console.log('sql=', sql)
+        // console.log('arrayValue=', arrayValue)
         return [sql, arrayValue] 
     }
   }

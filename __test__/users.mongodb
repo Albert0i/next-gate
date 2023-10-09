@@ -1,0 +1,43 @@
+db.createCollection('users', {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object", 
+      required: ['name', 'age'],
+      properties: {
+        id: {
+                bsonType: 'int',
+                description: "must be an integer"
+            },
+        name: {
+                bsonType: 'string', 
+                description: "must be a string and is required"
+            },
+        age: {
+                bsonType: 'int',
+                minimum: 1,
+                maximum: 120,
+                description: "must be an integer >=1 and <= 120"
+            },
+        isAdmin: {
+                bsonType: 'int',
+                minimum: 0, 
+                maximum: 1, 
+                description: "must be 0 (false) or 1 (true)"
+            },
+        updatedAt: {
+                bsonType: 'timestamp',
+                description: "update timestamp"
+            },
+        createdAt: {
+                bsonType: 'timestamp', 
+                description: "create timestamp"
+            }
+        }
+      }
+    }
+});
+
+/*
+   How MongoDB Create Collection?
+   https://www.knowledgehut.com/blog/web-development/mongodb-create-collection
+*/
