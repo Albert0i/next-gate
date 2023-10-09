@@ -3,7 +3,7 @@
 ### Prologue
 
 ### I. Introduction
-
+[MySQL](https://www.mysql.com/) and [MongoDB](https://www.mongodb.com/) are two of the most heard terms in web development (i believe), The former is SQL while the latter is NoSQL database, both of them are free to use and suit for production as well as learning purpose. 
 
 ### II. MySQL
 
