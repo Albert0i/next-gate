@@ -4,12 +4,13 @@
 [ASSUMPTION](https://www.oxfordlearnersdictionaries.com/definition/english/assumption?q=assumptions) a belief or feeling that something is true or that something will happen, although there is no proof. 
 
 ### I. Introduction
-[MySQL](https://www.mysql.com/) and [MongoDB](https://www.mongodb.com/) are two of the most commonly heard terms in web development (i believe), The former is SQL while the latter is NoSQL database, both of them are free to use and suit for production as well as learning purpose. 
+[MySQL](https://www.mysql.com/) and [MongoDB](https://www.mongodb.com/) are two of the most commonly heard terms in web development (i believe), The former is SQL while the latter is NoSQL database, both of them are free to use and suit for production as well as learning purpose. The discussion can be found [here.](https://www.mongodb.com/nosql-explained/nosql-vs-sql)
 
 ### II. MySQL
-The package I am going to use here is [mysql2](https://www.npmjs.com/package/mysql2) which support connection pool and promise. 
+The package I am going to use here is [mysql2](https://www.npmjs.com/package/mysql2) which supports connection pool and promise, etc. 
 
 ### III. MongoDB
+Most people refers as schemaless, I would like to call optional schema. 
 
 ### IV. Summary 
 
