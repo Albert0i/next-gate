@@ -4,6 +4,7 @@
 
 ### I. Introduction
 
+
 ### II. MySQL
 
 ### III. MongoDB
@@ -18,7 +19,7 @@
 4. [npm | mysql2](https://www.npmjs.com/package/mysql2)
 5. [Bulk insert with mysql2 and NodeJs throws 500](https://stackoverflow.com/questions/67672322/bulk-insert-with-mysql2-and-nodejs-throws-500)
 6. [npm | mongodb](https://www.npmjs.com/package/mongodb)
-7. [MongoServerSelectionError: connect ECONNREFUSED::1:27017](https://blog.devgenius.io/mongoserverselectionerror-connect-econnrefused-1-27017-bee70efd1cac)
+7. [How MongoDB Create Collection?](https://www.knowledgehut.com/blog/web-development/mongodb-create-collection)
 08. [MySQL Data Types](https://www.w3schools.com/mysql/mysql_datatypes.asp)
 09. [MongoDB - Datatypes](https://www.tutorialspoint.com/mongodb/mongodb_datatype.htm)
 10. [Connect a Node.js application to PlanetScale](https://planetscale.com/docs/tutorials/connect-nodejs-app)
@@ -27,4 +28,4 @@
 ### Epilogue 
 
 
-### EOF (2023/10/05)
+### EOF (2023/10/13)
