@@ -7,6 +7,7 @@
 [MySQL](https://www.mysql.com/) and [MongoDB](https://www.mongodb.com/) are two of the most commonly heard terms in web development (i believe), The former is SQL while the latter is NoSQL database, both of them are free to use and suit for production as well as learning purpose. 
 
 ### II. MySQL
+The package I am going to use here is [mysql2](https://www.npmjs.com/package/mysql2) which support connection pool and promise. 
 
 ### III. MongoDB
 
