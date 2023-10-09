@@ -25,11 +25,11 @@ db.createCollection('users', {
                 description: "must be 0 (false) or 1 (true)"
             },
         updatedAt: {
-                bsonType: 'timestamp',
+                bsonType: [ "string", "null" ],
                 description: "update timestamp"
             },
         createdAt: {
-                bsonType: 'timestamp', 
+                bsonType: 'string', 
                 description: "create timestamp"
             }
         }
@@ -40,4 +40,7 @@ db.createCollection('users', {
 /*
    How MongoDB Create Collection?
    https://www.knowledgehut.com/blog/web-development/mongodb-create-collection
+
+   How to store null in a double field in mongodb
+   https://stackoverflow.com/questions/57605648/how-to-store-null-in-a-double-field-in-mongodb
 */
