@@ -3,16 +3,77 @@
 ### Prologue
 [ASSUMPTION](https://www.oxfordlearnersdictionaries.com/definition/english/assumption?q=assumptions) a belief or feeling that something is true or that something will happen, although there is no proof. 
 
+
 ### I. Introduction
-[MySQL](https://www.mysql.com/) and [MongoDB](https://www.mongodb.com/) are two of the most commonly heard terms in web development (i believe), The former is SQL while the latter is NoSQL database, both of them are free to use and suit for production as well as learning purpose. The discussion can be found [here.](https://www.mongodb.com/nosql-explained/nosql-vs-sql)
+[MySQL](https://www.mysql.com/) and [MongoDB](https://www.mongodb.com/) are two of the most commonly heard terms in web development (i believe), The former is SQL while the latter is NoSQL database, both of them are free to use and suit for production as well as learning purpose. A discussion and benefit of NoSQL can be found [here](https://www.mongodb.com/nosql-explained/nosql-vs-sql). 
+
+Few projects ever treads on more than one databases, especially heterogeneous ones. The MySQL Server to be used is 8.0.30 and MongoDB Server to be used is 4.0.3. Both servers are spinned up via [Laragon](https://laragon.org/index.html). The client to be used is [phpMyAdmin](https://www.phpmyadmin.net/) version 5.0.2 and [MongoDB Compass](https://www.mongodb.com/products/tools/compass) version 1.30.1. 
+
+![alt laragon](/img/laragon.JPG)
+
 
 ### II. MySQL
-The package I am going to use here is [mysql2](https://www.npmjs.com/package/mysql2) which supports connection pool and promise, etc. 
+The package used is [mysql2](https://www.npmjs.com/package/mysql2) which supports connection pool and promise, which is essential in modern javascript programming. Relational databases are powerful but rigid, all data must be formulated in tabular forms, aka [Normal Forms](https://www.geeksforgeeks.org/normal-forms-in-dbms/). 
+```
+CREATE TABLE animals (
+     id MEDIUMINT NOT NULL AUTO_INCREMENT,
+     name CHAR(30) NOT NULL,
+     PRIMARY KEY (id)
+);
+
+INSERT INTO animals (name) VALUES
+    ('dog'),('cat'),('penguin'),
+    ('lax'),('whale'),('ostrich');
+
+SELECT * FROM animals;
+```
+
+Traditional relational databases tend to be enormous and monolithic. MySQL has a good support of [clustering](https://dev.mysql.com/doc/index-cluster.html) but [partitioning](Partitioning) is problematic since the full syntax of [CREATE TABLE Statement](https://dev.mysql.com/doc/refman/8.0/en/create-table.html) can be mysterious. 
+
 
 ### III. MongoDB
-Most people refers as schemaless, I would like to call optional schema. 
+The package used is [mongodb](https://www.npmjs.com/package/mongodb) which is The official MongoDB driver for Node.js. NoSQL database is designed to be flexible, with intrinsic clustering and sharding capabilities. 
+
+Most people refers MongoDB as *schemaless* but I would like to call it *optional schema*. The [`db.createCollection()`](https://www.mongodb.com/docs/manual/reference/method/db.createCollection/) command has *validator* options in which a [JSON Schema](https://www.mongodb.com/docs/manual/core/schema-validation/specify-json-schema/#std-label-schema-validation-json) can be specified. 
+
+```
+db.createCollection("students", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         title: "Student Object Validation",
+         required: [ "address", "major", "name", "year" ],
+         properties: {
+            name: {
+               bsonType: "string",
+               description: "'name' must be a string and is required"
+            },
+            year: {
+               bsonType: "int",
+               minimum: 2017,
+               maximum: 3017,
+               description: "'year' must be an integer in [ 2017, 3017 ] and is required"
+            },
+            gpa: {
+               bsonType: [ "double" ],
+               description: "'gpa' must be a double if the field exists"
+            }
+         }
+      }
+   }
+} )
+```
+
 
 ### IV. Summary 
+![alt Papyrus](/img/next-gate.JPG)
+
+To be elastic and resilient to external impact, a four layers architecture is employed :
+
+1. Data access layer (app/config/mongoDB.js and app/config/mysql.js)
+2. API layer (app/api/mongodb/route.js and app/api/mysql/route.js)
+3. Server functions (server-actions/actions.js)
+4. Client (/components/Main.js)
 
 
 ### V. Reference
@@ -27,6 +88,7 @@ Most people refers as schemaless, I would like to call optional schema.
 09. [MongoDB - Datatypes](https://www.tutorialspoint.com/mongodb/mongodb_datatype.htm)
 10. [Connect a Node.js application to PlanetScale](https://planetscale.com/docs/tutorials/connect-nodejs-app)
 11. [The Mystery of Edwin Drood](https://www.gutenberg.org/files/564/564-h/564-h.htm)
+
 
 ### Epilogue 
 
