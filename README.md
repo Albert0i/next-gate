@@ -67,9 +67,13 @@ db.createCollection("students", {
 ```
 
 
-### IV. Summary 
+### IV. The Gate 
+I was thinking there exists such a tools to help me convert MySQL tables to/from MongoDB documents and it did. Projects such as [mysql-mongo-etl](https://github.com/dannysofftie/mysql-mongo-etl/tree/master) and [RestApp](https://restapp.io/) are such and such tools and can do so and so... Still, doesn't meet my need. My goal is to convert simple table with simple datatypes supported. 
+
 ![alt Papyrus](/img/next-gate.JPG)
 
+
+### V. Summary 
 To be elastic and resilient to external impact, a four layers architecture is employed :
 
 1. Data access layer (app/config/mongoDB.js and app/config/mysql.js)
@@ -80,7 +84,7 @@ To be elastic and resilient to external impact, a four layers architecture is em
 It only supports flat table with numeric, string, timestamp datatype. 
 
 
-### V. Reference
+### VI. Reference
 1. [[Series] Data teams How to connect MongoDB to MySQL: The Hard Way vs The Easy Way](https://restapp.io/blog/mongodb-to-mysql/#Method_2_A_Simpler_Approach_Utilizing_RestApp_to_Transfer_Data_from_MongoDB_to_MySQL)
 2. [RestApp: All-in-one tool for your data pipelines without code](https://restapp.io/)
 3. [SQL vs NoSQL: System Design](https://restapp.io/learn/sql-vs-nosql-system-design)
