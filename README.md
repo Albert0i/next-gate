@@ -7,7 +7,9 @@
 ### I. Introduction
 [MySQL](https://www.mysql.com/) and [MongoDB](https://www.mongodb.com/) are two of the most commonly heard terms in web development (i believe), The former is SQL while the latter is NoSQL database, both of them are free to use and suit for production as well as learning purpose. A discussion and benefit of NoSQL can be found [here](https://www.mongodb.com/nosql-explained/nosql-vs-sql). 
 
-Few projects ever treads on more than one databases, especially heterogeneous ones. The MySQL Server to be used is 8.0.30 and MongoDB Server to be used is 4.0.3. Both servers are spinned up via [Laragon](https://laragon.org/index.html). The client to be used is [phpMyAdmin](https://www.phpmyadmin.net/) version 5.0.2 and [MongoDB Compass](https://www.mongodb.com/products/tools/compass) version 1.30.1. 
+Ever since I learned programming, at a certain point of implementation, we have to choose a way to store our data, ie. database. From then on, programs evolve overtime but seldom change the store unless extensive code rewrite is involved. Even you have a brave heart, a more tedious as well as challenging drudgery of data migration is waiting you... More often than not, backend database prevent frontend from changing. They just intermingled and bounded together. It must be replace altogether or all at once when system crashed. Few projects ever treads on more than one databases, let alone heterogeneous one. 
+
+In this article, the MySQL Server to be used is version 8.0.30 and MongoDB Server to be used is version 4.0.3. Both servers are spinned up via [Laragon](https://laragon.org/index.html). The client to be used is [phpMyAdmin](https://www.phpmyadmin.net/) version 5.0.2 and [MongoDB Compass](https://www.mongodb.com/products/tools/compass) version 1.30.1. 
 
 ![alt laragon](/img/laragon.JPG)
 
@@ -28,7 +30,7 @@ INSERT INTO animals (name) VALUES
 SELECT * FROM animals;
 ```
 
-Traditional relational databases tend to be enormous and monolithic. MySQL has a good support of [clustering](https://dev.mysql.com/doc/index-cluster.html) but [partitioning](Partitioning) is problematic since the full syntax of [CREATE TABLE Statement](https://dev.mysql.com/doc/refman/8.0/en/create-table.html) can be mysterious. 
+Traditional relational databases tend to be enormous and monolithic. MySQL has a good support of [clustering](https://dev.mysql.com/doc/index-cluster.html) but [partitioning](Partitioning) is problematic, the full syntax of [CREATE TABLE Statement](https://dev.mysql.com/doc/refman/8.0/en/create-table.html) can be a state of bewilderment. 
 
 
 ### III. MongoDB
