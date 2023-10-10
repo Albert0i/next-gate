@@ -68,7 +68,7 @@ db.createCollection("students", {
 
 
 ### IV. The Gate 
-I was thinking there exists such a tools to help me convert MySQL tables to/from MongoDB documents and it did. Projects such as [mysql-mongo-etl](https://github.com/dannysofftie/mysql-mongo-etl/tree/master) and [RestApp](https://restapp.io/) are such and such tools and can do so and so... Still, doesn't meet my need. My goal is to convert simple tables, very very simple tables with simple datatypes, very very primitive datatypes. 
+I was thinking there exists such a tools to help me convert MySQL tables to/from MongoDB documents and it did. Projects such as [mysql-mongo-etl](https://github.com/dannysofftie/mysql-mongo-etl/tree/master) and [RestApp](https://restapp.io/) are such and such tools and can do so and so... Still, doesn't meet my need. My goal is to convert simple tables, very very simple tables with simple datatypes, very very primitive datatypes to and from these two databases. 
 
 ![alt Papyrus](/img/next-gate.JPG)
 
