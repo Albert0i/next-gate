@@ -77,6 +77,8 @@ To be elastic and resilient to external impact, a four layers architecture is em
 3. Server functions (server-actions/actions.js)
 4. Client (/components/Main.js)
 
+It only supports flat table with numeric, string, timestamp datatype. 
+
 
 ### V. Reference
 1. [[Series] Data teams How to connect MongoDB to MySQL: The Hard Way vs The Easy Way](https://restapp.io/blog/mongodb-to-mysql/#Method_2_A_Simpler_Approach_Utilizing_RestApp_to_Transfer_Data_from_MongoDB_to_MySQL)
