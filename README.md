@@ -100,5 +100,6 @@ It only supports flat table with numeric, string, timestamp datatype.
 
 ### Epilogue 
 
+![alt XFetch](img/xfetcher.JPG)
 
 ### EOF (2023/10/13)
