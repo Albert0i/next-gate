@@ -1,5 +1,7 @@
 ### Incompatibility is our business
 
+![alt under the tree](img/Under-the-trees.jpg)
+
 ### Prologue
 [ASSUMPTION](https://www.oxfordlearnersdictionaries.com/definition/english/assumption?q=assumptions) a belief or feeling that something is true or that something will happen, although there is no proof. Bearing a smell of superstition, it is a presentiment of no rationale, an omen of no base. Strange enough, we all live in it and work for it. Every thought and every action, there is an impending and expected outcome. So to speak, not the least a serious science issue. 
 
