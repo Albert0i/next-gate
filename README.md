@@ -102,7 +102,7 @@ It only supports flat table with numeric, string, timestamp datatype.
 
 ### Epilogue 
 
-`XFetcher.vb` is a SQL generation utility for Oracle written in ASP.NET 2.0. It reads data from source and transform the result into either source SQL insert statements or insert statements for MongoDB. 
+**XFetcher.vb** is a SQL generation utility for Oracle written in ASP.NET 2.0. It reads data from source and transform the result into either source SQL insert statements or insert statements for MongoDB. 
 
 ![alt XFetch](img/xfetcher.JPG)
 
